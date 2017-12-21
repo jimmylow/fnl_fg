@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<DataTools.ServerProfiles version="1.0">
+<profile autoconnect="No" desc="" id="1a6abe80-db2d-11e1-a525-c21563b0ddf9" name="nl_ds" providerID="org.eclipse.birt.report.data.oda.jdbc">
+<baseproperties>
+<property name="odaURL" value="jdbc:mysql://10.10.1.28:9909/nl_fgood"/>
+<property name="odaDriverClass" value="com.mysql.jdbc.Driver"/>
+<property name="odaPassword" value="123456"/>
+<property name="odaUser" value="admin"/>
+<property name="contentBidiFormatStr" value="ILYNN"/>
+<property name="metadataBidiFormatStr" value="ILYNN"/>
+</baseproperties>
+</profile>
+</DataTools.ServerProfiles>

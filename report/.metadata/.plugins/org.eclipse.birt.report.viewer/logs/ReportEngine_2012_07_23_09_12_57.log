@@ -1,0 +1,4 @@
+Jul 23, 2012 9:13:09 AM org.eclipse.birt.report.model.parser.ModuleReader readModule
+SEVERE: Line Number:385 Error Code:Error.XMLParserException.EXCEPTION Exception:org.eclipse.birt.report.model.api.command.ExtendsForbiddenException: The parent element "Grid" is not the top-level report item in components. Message:A generic exception occurred. 
+Jul 23, 2012 9:13:09 AM org.eclipse.birt.report.model.parser.ModuleReader readModule
+SEVERE: Line Number:385 Error Code:Error.XMLParserException.EXCEPTION Exception:org.eclipse.birt.report.model.api.command.ExtendsForbiddenException: The parent element "Grid" is not the top-level report item in components. Message:A generic exception occurred. 
