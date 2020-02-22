@@ -20,7 +20,8 @@ if($var_loginid == "") {
 
 if (isset($_POST['Submit'])){
     if ($_POST['Submit'] == "Print") {
-        
+     	$frcat  = $_POST['selfcat'];
+     	$tocat  = $_POST['seltcat'];        
         $frdte = date("Y-m-d", strtotime($_POST['rptofdte']));
         $baseCost = $_POST['calculateCostBaseOn'];
         
@@ -30,7 +31,7 @@ if (isset($_POST['Submit'])){
         
         $sql = "SELECT ProductCode, OwnCode, Description, ExFacPrice, ExUnit ";
         $sql .= " FROM product ";
-        //$sql .= " where ProductCode = 'M068-PK-32'";
+        $sql .= " where OwnCode between '$frcat' and '$tocat'";
         $sql .= " Order BY OwnCode, ProductCode";
         
         $rs_result = mysql_query($sql);
@@ -299,10 +300,10 @@ if (isset($_POST['Submit'])){
             
             //header("Location: $dest" );
             echo "<script language=\"javascript\">window.open('".$dest."','name','height=1000,width=1000,left=200,top=200');</script>";
-            $backloc = "../stk_rpt/stck_balrpt.php?menucd=".$var_menucode;
-            echo "<script>";
-            echo 'location.replace("'.$backloc.'")';
-            echo "</script>";
+            //$backloc = "../stk_rpt/stck_balrpt.php?menucd=".$var_menucode;
+            //echo "<script>";
+            //echo 'location.replace("'.$backloc.'")';
+            //echo "</script>";
         }else{
             echo "<script>";
             echo "alert('No Data Found!');";
@@ -413,6 +414,50 @@ function chkSubmit()
 	  <br>
 	  <form name="InpRawOpen" method="POST" onSubmit= "return chkSubmit()" action="<?php echo $_SERVER['PHP_SELF'].'?menucd='.$var_menucode; ?>" style="height: 134px; width: 527px;">
 		<table style="width: 500px">
+		<tr>
+		  	<td></td>
+		  	<td style="width: 140px">From <span>Own Code</span></td>
+		  	<td>:</td>
+		  	<td colspan="5">
+		  		<select name="selfcat" id ="selfcat" style="width: 278px">
+			    <?php
+                   $sql = "select category_code, category_desc from mdfcategory_master ORDER BY category_code";
+                   $sql_result = mysql_query($sql);
+                   echo "<option size =30 selected></option>";
+                       
+				   if(mysql_num_rows($sql_result)) 
+				   {
+				   	 while($row = mysql_fetch_assoc($sql_result)) 
+				     { 
+					  echo '<option value="'.$row['category_code'].'">'.$row['category_code']." | ".$row['category_desc'].'</option>';
+				 	 } 
+				   }
+	            ?>				   
+			  </select>
+		  	</td>
+		  </tr>
+		  <tr> 
+		    <td></td>
+		  	<td style="width: 140px">To Own Code</td>
+		  	<td>:</td>
+		  	<td colspan="5">
+		  		<select name="seltcat" id ="seltcat" style="width: 278px">
+			    <?php
+                   $sql = "select category_code, category_desc from mdfcategory_master ORDER BY category_code";
+                   $sql_result = mysql_query($sql);
+                   echo "<option size =30 selected></option>";
+                       
+				   if(mysql_num_rows($sql_result)) 
+				   {
+				   	 while($row = mysql_fetch_assoc($sql_result)) 
+				     { 
+					  echo '<option value="'.$row['category_code'].'">'.$row['category_code']." | ".$row['category_desc'].'</option>';
+				 	 } 
+				   }
+	            ?>				   
+			  </select>
+		  	</td>
+		  </tr>
 	  	  <tr>
 	  	    <td style="width: 6px"></td>
 	  	    <td style="width: 240px" class="tdlabel">As At Date</td>
